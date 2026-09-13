@@ -187,9 +187,11 @@
     margin-bottom: 18px;
   }
 
+  /* Video sits fixed on the left; photos wrap in their own grid to its
+     right, across as many rows as needed. Text (lineup etc.) always comes
+     after this whole block, below both columns. */
   .event-media {
     display: flex;
-    flex-wrap: wrap;
     align-items: flex-start;
     gap: 10px;
     margin-bottom: 18px;
@@ -225,9 +227,17 @@
     justify-content: center;
   }
 
+  .photo-grid {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 10px;
+  }
+
   /* Photos keep their own natural aspect ratio instead of being cropped to
      a square — a fixed height, width follows automatically. */
-  .event-media img {
+  .photo-grid img {
     flex: 0 0 auto;
     height: 170px;
     width: auto;
@@ -288,7 +298,7 @@
     opacity: 0.8;
   }
 
-  /* ---------- Mobile ---------- */
+  /* ---------- Mobile: stack video above photos instead of side by side --- */
 
   @media (max-width: 640px) {
     nav { display: none; }
@@ -310,8 +320,9 @@
 
     .nav-toggle { display: block; }
 
+    .event-media { flex-direction: column; }
     .event-media .video-wrap { width: 240px; }
-    .event-media img { height: 130px; max-width: 200px; }
+    .photo-grid img { height: 130px; max-width: 200px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -371,6 +382,8 @@ At Kori Jazz we play street basketball and listen to jazz. Come listen to the mu
        erotettuna, missä järjestyksessä tahansa. Koodi tunnistaa
        itse tiedostopäätteestä onko kyseessä kuva vai video —
        sinun ei tarvitse merkitä mikä on "juliste" tai "aftermovie".
+       Video asettuu aina vasempaan laitaan ja kuvat sen viereen
+       ruudukoksi, riippumatta missä järjestyksessä ne on listattu.
 
        Lisää kuva:  ...|2025-bridge-6.jpg
        Lisää video: ...|2025-bridge-7.mp4  (tai suora URL, esim.
@@ -554,11 +567,15 @@ At Kori Jazz we play street basketball and listen to jazz. Come listen to the mu
 
   // ---------- Build each event's media from its data-media list ----------
   // Each filename is checked by its extension: .mp4/.mov/.webm becomes an
-  // autoplay-on-scroll video, anything else becomes a clickable photo.
+  // autoplay-on-scroll video (always placed on the left), anything else
+  // becomes a clickable photo placed in a wrapping grid to the video's right.
   const VIDEO_EXT = /\.(mp4|mov|webm|m4v)(\?.*)?$/i;
 
   document.querySelectorAll('.event[data-media]').forEach((eventEl) => {
     const container = eventEl.querySelector('.event-media');
+    const photoGrid = document.createElement('div');
+    photoGrid.className = 'photo-grid';
+
     const files = eventEl.getAttribute('data-media')
       .split('|')
       .map((f) => f.trim())
@@ -592,7 +609,9 @@ At Kori Jazz we play street basketball and listen to jazz. Come listen to the mu
 
         wrap.appendChild(video);
         wrap.appendChild(btn);
-        container.appendChild(wrap);
+        // Video always goes to the front, so it ends up on the left
+        // regardless of where it appears in the data-media list.
+        container.insertBefore(wrap, container.firstChild);
       } else {
         const img = document.createElement('img');
         img.src = file;
@@ -601,9 +620,13 @@ At Kori Jazz we play street basketball and listen to jazz. Come listen to the mu
           lightboxImg.src = img.getAttribute('src');
           lightbox.classList.add('open');
         });
-        container.appendChild(img);
+        photoGrid.appendChild(img);
       }
     });
+
+    if (photoGrid.children.length) {
+      container.appendChild(photoGrid);
+    }
   });
 
   // Play/pause each aftermovie as it scrolls into view.
