@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kori Jazz Portfolio</title>
+<title>Kori Jazz — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -104,11 +104,34 @@
     transform: rotate(-1.5deg);
   }
 
-  .hero .tagline {
-    margin-top: 20px;
-    font-size: clamp(15px, 2.4vw, 19px);
-    font-weight: 500;
-    letter-spacing: 0.01em;
+  /* ---------- Concept: text + portrait video side by side ---------- */
+
+  .concept-row {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    margin-top: 48px;
+  }
+
+  .concept-row .info-text { flex: 1; text-align: left; }
+
+  .promo-video {
+    position: relative;
+    flex: 0 0 auto;
+    width: 380px;
+    aspect-ratio: 9 / 16;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #111;
+    box-shadow: 0 12px 32px rgba(1, 97, 163, 0.22);
+  }
+
+  .promo-video video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  @media (max-width: 640px) {
+    .concept-row { flex-direction: column; align-items: center; }
+    .concept-row .info-text { text-align: center; }
+    .promo-video { width: 300px; }
   }
 
   /* ---------- Sections ---------- */
@@ -133,34 +156,6 @@
     font-size: clamp(15px, 2.4vw, 19px);
     font-weight: 500;
     line-height: 1.6;
-  }
-
-  /* ---------- Concept: text + portrait video side by side ---------- */
-
-  .concept-row {
-    display: flex;
-    gap: 32px;
-    align-items: center;
-  }
-
-  .concept-row .info-text { flex: 1; text-align: left; }
-
-  .promo-video {
-    flex: 0 0 auto;
-    width: 380px;
-    aspect-ratio: 9 / 16;
-    border-radius: 14px;
-    overflow: hidden;
-    background: #111;
-    box-shadow: 0 12px 32px rgba(1, 97, 163, 0.22);
-  }
-
-  .promo-video video { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-  @media (max-width: 640px) {
-    .concept-row { flex-direction: column; }
-    .concept-row .info-text { text-align: center; }
-    .promo-video { width: 300px; }
   }
 
   /* ---------- Events (no boxes — spacing does the separating) ---------- */
@@ -357,9 +352,10 @@
 At Kori Jazz we play street basketball and listen to jazz. Come listen to the music and enjoy the atmosphere, or jump on the court to join the games! We organize one or two bigger events a year, plus a handful of pop-up events with a single band. All events are free of charge and open to everyone!      </p>
       <div class="promo-video">
         <!-- TODO: korvaa 2026 mainosvideolla (pystysuunta, mykistetty, loop) -->
-        <video autoplay muted loop playsinline preload="metadata">
+        <video id="promoVideo" autoplay muted loop playsinline preload="metadata">
           <source src="https://github.com/korijazzofficial/portfolio/releases/download/v1/2026-promo.mp4" type="video/mp4">
         </video>
+        <button class="sound-toggle" id="promoSoundToggle" aria-label="Toggle sound">🔇</button>
       </div>
     </div>
   </section>
@@ -545,6 +541,14 @@ At Kori Jazz we play street basketball and listen to jazz. Come listen to the mu
     });
   });
 
+  // Promo video sound toggle
+  const promoVideo = document.getElementById('promoVideo');
+  const promoSoundToggle = document.getElementById('promoSoundToggle');
+  promoSoundToggle.addEventListener('click', () => {
+    promoVideo.muted = !promoVideo.muted;
+    promoSoundToggle.textContent = promoVideo.muted ? '🔇' : '🔊';
+  });
+
   // ---------- Build each event's media from its data-media list ----------
   // Each filename is checked by its extension: .mp4/.mov/.webm becomes an
   // autoplay-on-scroll video, anything else becomes a clickable photo.
@@ -610,6 +614,7 @@ At Kori Jazz we play street basketball and listen to jazz. Come listen to the mu
     });
   }, { threshold: 0.5 });
   document.querySelectorAll('.event-video').forEach((v) => observer.observe(v));
+  observer.observe(promoVideo);
 
   // Lightbox: click any event photo to enlarge it
   const lightbox = document.getElementById('lightbox');
