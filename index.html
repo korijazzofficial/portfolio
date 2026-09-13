@@ -40,16 +40,10 @@
 
   .logo-wrap { grid-column: 2; display: flex; justify-content: center; }
 
-  /* TODO: korvaa tämä <img class="logo" src="assets/logo.png" alt="Kori Jazz">
-     -tagilla kun sinulla on oikea logotiedosto. Tekstiversio toimii sillä välin. */
-  .logo-text {
-    font-family: 'Azeret Mono', monospace;
-    font-weight: 800;
-    text-transform: uppercase;
-    font-size: 14px;
-    letter-spacing: 0.03em;
-    transform: rotate(-1.5deg);
-    display: inline-block;
+  .logo {
+    width: 90px;
+    height: auto;
+    display: block;
   }
 
   nav { grid-column: 3; justify-self: end; }
@@ -153,7 +147,7 @@
 
   .promo-video {
     flex: 0 0 auto;
-    width: 300px;
+    width: 380px;
     aspect-ratio: 9 / 16;
     border-radius: 14px;
     overflow: hidden;
@@ -166,7 +160,7 @@
   @media (max-width: 640px) {
     .concept-row { flex-direction: column; }
     .concept-row .info-text { text-align: center; }
-    .promo-video { width: 260px; }
+    .promo-video { width: 300px; }
   }
 
   /* ---------- Events (no boxes — spacing does the separating) ---------- */
@@ -208,7 +202,7 @@
   .event-media .video-wrap {
     position: relative;
     flex: 0 0 auto;
-    width: 240px;
+    width: 320px;
     aspect-ratio: 9 / 16;
     border-radius: 14px;
     overflow: hidden;
@@ -318,7 +312,7 @@
 
     .nav-toggle { display: block; }
 
-    .event-media .video-wrap { width: 190px; }
+    .event-media .video-wrap { width: 240px; }
     .event-media img { width: 88px; }
   }
 
@@ -332,7 +326,7 @@
 
 <header>
   <div class="header-inner">
-    <div class="logo-wrap"><span class="logo-text">Kori Jazz</span></div>
+    <div class="logo-wrap"><img class="logo" src="assets/logo.png" alt="Kori Jazz"></div>
 
     <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -435,7 +429,7 @@
       <div class="event-media">
         <div class="video-wrap">
           <video class="event-video" muted loop playsinline preload="metadata" poster="assets/2025-bridge-poster.jpg">
-            <source src="https://github.com/korijazzofficial/portfolio/releases/download/v1/2025-bridge-aftermovie.mp4" type="video/mp4">
+            <source src="assets/2025-bridge-aftermovie.mp4" type="video/mp4">
           </video>
           <button class="sound-toggle" aria-label="Toggle sound">🔇</button>
         </div>
