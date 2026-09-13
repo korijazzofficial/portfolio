@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kori Jazz — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fff8b6;
+    --ink: #0161a3;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ---------- Header ---------- */
+
+  header { padding: 24px 24px 0; }
+
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .logo-wrap { grid-column: 2; display: flex; justify-content: center; }
+
+  /* TODO: korvaa tämä <img class="logo" src="assets/logo.png" alt="Kori Jazz">
+     -tagilla kun sinulla on oikea logotiedosto. Tekstiversio toimii sillä välin. */
+  .logo-text {
+    font-family: 'Azeret Mono', monospace;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.03em;
+    transform: rotate(-1.5deg);
+    display: inline-block;
+  }
+
+  nav { grid-column: 3; justify-self: end; }
+
+  nav ul { display: flex; gap: 24px; list-style: none; }
+
+  nav a {
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    position: relative;
+  }
+
+  nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background: var(--ink);
+    transition: width 0.2s ease;
+  }
+
+  nav a:hover::after { width: 100%; }
+
+  .nav-toggle {
+    display: none;
+    grid-column: 3;
+    justify-self: end;
+    background: none;
+    border: none;
+    color: var(--ink);
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .nav-toggle svg { width: 26px; height: 26px; }
+
+  /* ---------- Hero ---------- */
+
+  .hero {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 56px 24px 48px;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-family: 'Azeret Mono', monospace;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: clamp(28px, 6vw, 56px);
+    line-height: 1.08;
+    letter-spacing: 0.01em;
+    transform: rotate(-1.5deg);
+  }
+
+  .hero .tagline {
+    margin-top: 20px;
+    font-size: clamp(15px, 2.4vw, 19px);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  /* ---------- Sections ---------- */
+
+  section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px 72px;
+  }
+
+  section h2 {
+    font-family: 'Azeret Mono', monospace;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: clamp(22px, 4vw, 30px);
+    margin-bottom: 24px;
+    text-align: center;
+    transform: rotate(-1.5deg);
+  }
+
+  .info-text {
+    font-size: clamp(15px, 2.4vw, 19px);
+    font-weight: 500;
+    line-height: 1.6;
+  }
+
+  /* ---------- Concept: text + portrait video side by side ---------- */
+
+  .concept-row {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .concept-row .info-text { flex: 1; text-align: left; }
+
+  .promo-video {
+    flex: 0 0 auto;
+    width: 300px;
+    aspect-ratio: 9 / 16;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #111;
+    box-shadow: 0 12px 32px rgba(1, 97, 163, 0.22);
+  }
+
+  .promo-video video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  @media (max-width: 640px) {
+    .concept-row { flex-direction: column; }
+    .concept-row .info-text { text-align: center; }
+    .promo-video { width: 260px; }
+  }
+
+  /* ---------- Events (no boxes — spacing does the separating) ---------- */
+
+  .event {
+    padding-bottom: 48px;
+    margin-bottom: 48px;
+  }
+
+  .event:not(:last-child) {
+    border-bottom: 1px solid rgba(1, 97, 163, 0.12);
+  }
+
+  .event:last-child { padding-bottom: 0; margin-bottom: 0; }
+
+  .event h3 {
+    font-family: 'Azeret Mono', monospace;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1.15rem;
+    letter-spacing: 0.01em;
+    margin-bottom: 6px;
+  }
+
+  .event-meta {
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 0.75;
+    margin-bottom: 18px;
+  }
+
+  .event-media {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .event-media .video-wrap {
+    position: relative;
+    flex: 0 0 auto;
+    width: 240px;
+    aspect-ratio: 9 / 16;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #111;
+    box-shadow: 0 12px 28px rgba(1, 97, 163, 0.2);
+  }
+
+  .event-media .video-wrap video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .sound-toggle {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .event-media img {
+    flex: 0 0 auto;
+    width: 110px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+    cursor: zoom-in;
+  }
+
+  .field-label {
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 0.75;
+    margin-bottom: 4px;
+  }
+
+  .event-text, .lineup, .credit-line { font-size: 15px; line-height: 1.55; }
+
+  .event-text { margin-bottom: 12px; }
+
+  .lineup { margin-bottom: 6px; }
+
+  .credit-line { opacity: 0.75; font-size: 13px; }
+
+  /* ---------- Lightbox ---------- */
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    z-index: 999;
+  }
+
+  .lightbox.open { opacity: 1; pointer-events: auto; }
+
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    cursor: zoom-out;
+  }
+
+  /* ---------- Footer ---------- */
+
+  footer {
+    text-align: center;
+    padding: 32px 24px 48px;
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 0.8;
+  }
+
+  /* ---------- Mobile ---------- */
+
+  @media (max-width: 640px) {
+    nav { display: none; }
+
+    nav.open {
+      display: block;
+      grid-column: 1 / -1;
+      justify-self: stretch;
+      margin-top: 16px;
+    }
+
+    nav.open ul {
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 0;
+      border-top: 1px solid rgba(1, 97, 163, 0.15);
+    }
+
+    .nav-toggle { display: block; }
+
+    .event-media .video-wrap { width: 190px; }
+    .event-media img { width: 88px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    nav a::after { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-wrap"><span class="logo-text">Kori Jazz</span></div>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+
+    <nav id="mainNav">
+      <ul>
+        <li><a href="#y2026">2026</a></li>
+        <li><a href="#y2025">2025</a></li>
+        <li><a href="#y2024">2024</a></li>
+        <li><a href="#y2023">2023</a></li>
+        <li><a href="#y2022">2022</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>Kori Jazz Portfolio</h1>
+    <p class="tagline">Live jazz and open street basketball, on the same court. Events from 2022 to 2026.</p>
+  </section>
+
+  <section id="concept">
+    <h2>Concept</h2>
+    <div class="concept-row">
+      <p class="info-text">
+        <!-- TODO: hio tämä pätkä lopulliseen muotoon -->
+        Kori Jazz began with a simple idea: bring live jazz and open street basketball into the same
+        public space. The name "The Bridge" nods to Sonny Rollins' 1962 album — Rollins famously
+        practiced on the Williamsburg Bridge in New York because he had nowhere else to play. In 2023
+        we found our own bridge, by accident: the underpass of the Hämeentie bridge between Vallila and
+        Hermanni, Helsinki, taken as shelter from the rain. The atmosphere — graffiti, acoustics, traffic
+        passing overhead — turned out to be exactly right. The bridge is now scheduled for demolition,
+        which gives the footage from earlier years added documentary weight.
+      </p>
+      <div class="promo-video">
+        <!-- TODO: korvaa 2026 mainosvideolla (pystysuunta, mykistetty, loop) -->
+        <video autoplay muted loop playsinline preload="metadata" poster="assets/2026-bridge-poster.jpg">
+          <source src="assets/2026-promo.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 2026 ========== -->
+  <section id="y2026">
+    <h2>2026</h2>
+
+    <div class="event">
+      <h3>Kori Jazz The Bridge</h3>
+      <p class="event-meta">Aug 22, 2026 · Hermanni Basketball Court, Hämeentie 105, Helsinki</p>
+      <div class="event-media">
+        <!-- TODO: lisää aftermovie tähän kun se on valmis — video-wrap+video-koodin
+             saat kopioitua esim. yllä olevasta Maailma kylässä -tapahtumasta. -->
+        <!-- TODO: lisää niin monta kuvaa Atten materiaalista kuin haluat, samalla kaavalla -->
+        <img src="assets/2026-bridge-1.jpg" alt="">
+        <img src="assets/2026-bridge-2.jpg" alt="">
+        <img src="assets/2026-bridge-3.jpg" alt="">
+        <img src="assets/2026-bridge-4.jpg" alt="">
+        <img src="assets/2026-bridge-5.jpg" alt="">
+      </div>
+      <p class="event-text"><!-- TODO: 2–4 lausetta vuoden 2026 tunnelmasta --></p>
+      <p class="field-label">Lineup</p>
+      <p class="lineup">Kadi Vija · Antti Ahoniemi Trio · Siina Suutarinen Super Sonic feat. Oona Mattsson · Mubba and The Afrotan</p>
+      <p class="credit-line">In partnership with: Yökoris (basketball) · Bamilama (food)</p>
+    </div>
+
+    <div class="event">
+      <h3>Pop-up: Maailma kylässä Festival</h3>
+      <p class="event-meta">May 16, 2026 · Narinkkatori, Helsinki</p>
+      <div class="event-media">
+        <div class="video-wrap">
+          <video class="event-video" muted loop playsinline preload="metadata" poster="assets/2026-popup-poster.jpg">
+            <source src="assets/2026-popup-aftermovie.mp4" type="video/mp4">
+          </video>
+          <button class="sound-toggle" aria-label="Toggle sound">🔇</button>
+        </div>
+        <img src="assets/2026-popup-1.jpg" alt="">
+        <img src="assets/2026-popup-2.jpg" alt="">
+        <img src="assets/2026-popup-3.jpg" alt="">
+      </div>
+      <p class="event-text"><!-- TODO: lyhyt kuvaus --></p>
+      <p class="field-label">Lineup</p>
+      <p class="lineup">Pauli Halonen Trio · Yökoris</p>
+    </div>
+  </section>
+
+  <!-- ========== 2025 ========== -->
+  <section id="y2025">
+    <h2>2025</h2>
+
+    <div class="event">
+      <h3>Kori Jazz The Bridge</h3>
+      <p class="event-meta">Helsinki · Hämeentie bridge underpass, Vallila/Hermanni</p>
+      <div class="event-media">
+        <div class="video-wrap">
+          <video class="event-video" muted loop playsinline preload="metadata" poster="assets/2025-bridge-poster.jpg">
+            <source src="assets/2025-bridge-aftermovie.mp4" type="video/mp4">
+          </video>
+          <button class="sound-toggle" aria-label="Toggle sound">🔇</button>
+        </div>
+        <img src="assets/2025-bridge-1.jpg" alt="">
+        <img src="assets/2025-bridge-2.jpg" alt="">
+        <img src="assets/2025-bridge-3.jpg" alt="">
+        <img src="assets/2025-bridge-4.jpg" alt="">
+      </div>
+      <p class="event-text"><!-- TODO: kuvaus --></p>
+      <p class="field-label">Lineup</p>
+      <p class="lineup"><!-- TODO: bändilista --></p>
+    </div>
+
+    <div class="event">
+      <h3>Kori Jazz Copenhagen</h3>
+      <p class="event-meta">Copenhagen · part of Copenhagen Jazz Week</p>
+      <div class="event-media">
+        <div class="video-wrap">
+          <video class="event-video" muted loop playsinline preload="metadata" poster="assets/2025-copenhagen-poster.jpg">
+            <source src="assets/2025-copenhagen-aftermovie.mp4" type="video/mp4">
+          </video>
+          <button class="sound-toggle" aria-label="Toggle sound">🔇</button>
+        </div>
+        <img src="assets/2025-copenhagen-1.jpg" alt="">
+        <img src="assets/2025-copenhagen-2.jpg" alt="">
+        <img src="assets/2025-copenhagen-3.jpg" alt="">
+        <img src="assets/2025-copenhagen-4.jpg" alt="">
+      </div>
+      <p class="event-text"><!-- TODO: kuvaus, esim. yhteys Nordic Culture Exchange -ohjelmaan --></p>
+      <p class="field-label">Lineup</p>
+      <p class="lineup"><!-- TODO: bändilista --></p>
+    </div>
+
+    <div class="event">
+      <h3>Pop-up: Eira</h3>
+      <p class="event-meta">Helsinki</p>
+      <div class="event-media">
+        <div class="video-wrap">
+          <video class="event-video" muted loop playsinline preload="metadata" poster="assets/2025-eira-poster.jpg">
+            <source src="assets/2025-eira-aftermovie.mp4" type="video/mp4">
+          </video>
+          <button class="sound-toggle" aria-label="Toggle sound">🔇</button>
+        </div>
+        <img src="assets/2025-eira-1.jpg" alt="">
+        <img src="assets/2025-eira-2.jpg" alt="">
+        <img src="assets/2025-eira-3.jpg" alt="">
+      </div>
+      <p class="event-text"><!-- TODO: kuvaus --></p>
+    </div>
+
+    <div class="event">
+      <h3>Pop-up: Bar Typo, Ruoholahti</h3>
+      <p class="event-meta">Helsinki Day · moved indoors due to rain</p>
+      <div class="event-media">
+        <div class="video-wrap">
+          <video class="event-video" muted loop playsinline preload="metadata" poster="assets/2025-typo-poster.jpg">
+            <source src="assets/2025-typo-aftermovie.mp4" type="video/mp4">
+          </video>
+          <button class="sound-toggle" aria-label="Toggle sound">🔇</button>
+        </div>
+        <img src="assets/2025-typo-1.jpg" alt="">
+        <img src="assets/2025-typo-2.jpg" alt="">
+        <img src="assets/2025-typo-3.jpg" alt="">
+      </div>
+      <p class="event-text"><!-- TODO: kuvaus --></p>
+    </div>
+
+    <div class="event">
+      <h3>Pop-up: Ruoholahti, with Helride</h3>
+      <p class="event-meta">Ruoholahti, Helsinki</p>
+      <div class="event-media">
+        <div class="video-wrap">
+          <video class="event-video" muted loop playsinline preload="metadata" poster="assets/2025-helride-poster.jpg">
+            <source src="assets/2025-helride-aftermovie.mp4" type="video/mp4">
+          </video>
+          <button class="sound-toggle" aria-label="Toggle sound">🔇</button>
+        </div>
+        <img src="assets/2025-helride-1.jpg" alt="">
+        <img src="assets/2025-helride-2.jpg" alt="">
+        <img src="assets/2025-helride-3.jpg" alt="">
+      </div>
+      <p class="event-text"><!-- TODO: kuvaus --></p>
+      <p class="credit-line">In partnership with: Helride</p>
+    </div>
+  </section>
+
+  <!-- ========== 2024 ========== -->
+  <section id="y2024">
+    <h2>2024</h2>
+
+    <div class="event">
+      <h3>Kori Jazz The Bridge</h3>
+      <p class="event-meta">Vallila/Hermanni, Helsinki</p>
+      <div class="event-media">
+        <div class="video-wrap">
+          <video class="event-video" muted loop playsinline preload="metadata" poster="assets/2024-bridge-poster.jpg">
+            <source src="assets/2024-bridge-aftermovie.mp4" type="video/mp4">
+          </video>
+          <button class="sound-toggle" aria-label="Toggle sound">🔇</button>
+        </div>
+        <img src="assets/2024-bridge-1.jpg" alt="">
+        <img src="assets/2024-bridge-2.jpg" alt="">
+        <img src="assets/2024-bridge-3.jpg" alt="">
+        <img src="assets/2024-bridge-4.jpg" alt="">
+      </div>
+      <p class="event-text"><!-- TODO: kuvaus --></p>
+      <p class="field-label">Lineup</p>
+      <p class="lineup"><!-- TODO: bändilista --></p>
+    </div>
+
+    <div class="event">
+      <h3>The Sunny Side</h3>
+      <p class="event-meta">Hietaniemi beach, Helsinki</p>
+      <div class="event-media">
+        <div class="video-wrap">
+          <video class="event-video" muted loop playsinline preload="metadata" poster="assets/2024-sunnyside-poster.jpg">
+            <source src="assets/2024-sunnyside-aftermovie.mp4" type="video/mp4">
+          </video>
+          <button class="sound-toggle" aria-label="Toggle sound">🔇</button>
+        </div>
+        <img src="assets/2024-sunnyside-1.jpg" alt="">
+        <img src="assets/2024-sunnyside-2.jpg" alt="">
+        <img src="assets/2024-sunnyside-3.jpg" alt="">
+        <img src="assets/2024-sunnyside-4.jpg" alt="">
+      </div>
+      <p class="event-text"><!-- TODO: kuvaus --></p>
+      <p class="field-label">Lineup</p>
+      <p class="lineup"><!-- TODO: bändilista --></p>
+    </div>
+
+    <div class="event">
+      <h3>Pop-up: Helsinki Day, outside Oodi</h3>
+      <p class="event-meta">Helsinki</p>
+      <div class="event-media">
+        <img src="assets/2024-oodi-1.jpg" alt="">
+        <img src="assets/2024-oodi-2.jpg" alt="">
+        <img src="assets/2024-oodi-3.jpg" alt="">
+        <img src="assets/2024-oodi-4.jpg" alt="">
+      </div>
+    </div>
+
+    <div class="event">
+      <h3>Pop-up: Finnish 3×3 Basketball Championships</h3>
+      <p class="event-meta">Kansalaistori, Helsinki</p>
+      <div class="event-media">
+        <img src="assets/2024-kansalaistori-1.jpg" alt="">
+        <img src="assets/2024-kansalaistori-2.jpg" alt="">
+        <img src="assets/2024-kansalaistori-3.jpg" alt="">
+        <img src="assets/2024-kansalaistori-4.jpg" alt="">
+      </div>
+    </div>
+
+    <div class="event">
+      <h3>Pop-up: Central Court Opening</h3>
+      <p class="event-meta">Järvenpää</p>
+      <div class="event-media">
+        <img src="assets/2024-jarvenpaa-1.jpg" alt="">
+        <img src="assets/2024-jarvenpaa-2.jpg" alt="">
+        <img src="assets/2024-jarvenpaa-3.jpg" alt="">
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 2023 ========== -->
+  <section id="y2023">
+    <h2>2023</h2>
+
+    <div class="event">
+      <h3>Under the Hämeentie Bridge</h3>
+      <p class="event-meta">Vallila/Hermanni, Helsinki</p>
+      <div class="event-media">
+        <img src="assets/2023-1.jpg" alt="">
+        <img src="assets/2023-2.jpg" alt="">
+        <img src="assets/2023-3.jpg" alt="">
+        <img src="assets/2023-4.jpg" alt="">
+      </div>
+      <p class="event-text">
+        <!-- TODO: tämä on hyvä paikka alkuperätarinalle — silta löytyi sattumalta,
+             nimeä "The Bridge" ei vielä ollut käytössä. -->
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== 2022 ========== -->
+  <section id="y2022">
+    <h2>2022</h2>
+
+    <div class="event">
+      <h3>The First Kori Jazz</h3>
+      <p class="event-meta">Hietaniemi beach, Helsinki</p>
+      <div class="event-media">
+        <img src="assets/2022-1.jpg" alt="">
+        <img src="assets/2022-2.jpg" alt="">
+        <img src="assets/2022-3.jpg" alt="">
+      </div>
+      <p class="event-text"><!-- TODO: perustamistarina --></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Kori Jazz &mdash; portfolio for the Kone Foundation application
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const nav = document.getElementById('mainNav');
+
+  toggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen);
+  });
+
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Play/pause each aftermovie as it scrolls into view.
+  const videos = document.querySelectorAll('.event-video');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.play().catch(() => {});
+      } else {
+        entry.target.pause();
+      }
+    });
+  }, { threshold: 0.5 });
+  videos.forEach((v) => observer.observe(v));
+
+  // Sound toggle buttons
+  document.querySelectorAll('.sound-toggle').forEach((btn) => {
+    const video = btn.parentElement.querySelector('video');
+    btn.addEventListener('click', () => {
+      video.muted = !video.muted;
+      btn.textContent = video.muted ? '🔇' : '🔊';
+    });
+  });
+
+  // Lightbox: click any event photo to enlarge it
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  document.querySelectorAll('.event-media img').forEach((img) => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.getAttribute('src');
+      lightbox.classList.add('open');
+    });
+  });
+  lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
+</script>
+
+</body>
+</html>
