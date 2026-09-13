@@ -187,14 +187,13 @@
     margin-bottom: 18px;
   }
 
-  /* Video sits fixed on the left; photos wrap in their own grid to its
-     right, across as many rows as needed. Text (lineup etc.) always comes
-     after this whole block, below both columns. */
+  /* Video sits fixed on the left, full height. To its right is a single
+     column holding the photo grid ON TOP and all the text (description,
+     lineup, credit) BELOW the photos — never below the video. */
   .event-media {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
-    margin-bottom: 18px;
+    gap: 20px;
   }
 
   .event-media .video-wrap {
@@ -227,12 +226,17 @@
     justify-content: center;
   }
 
-  .photo-grid {
+  .content-col {
     flex: 1;
+    min-width: 0;
+  }
+
+  .photo-grid {
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
     gap: 10px;
+    margin-bottom: 12px;
   }
 
   /* Photos keep their own natural aspect ratio instead of being cropped to
@@ -298,7 +302,7 @@
     opacity: 0.8;
   }
 
-  /* ---------- Mobile: stack video above photos instead of side by side --- */
+  /* ---------- Mobile: stack video above photos+text instead of side by side --- */
 
   @media (max-width: 640px) {
     nav { display: none; }
@@ -382,17 +386,20 @@ At Kori Jazz we play street basketball and listen to jazz. Come listen to the mu
        erotettuna, missä järjestyksessä tahansa. Koodi tunnistaa
        itse tiedostopäätteestä onko kyseessä kuva vai video —
        sinun ei tarvitse merkitä mikä on "juliste" tai "aftermovie".
-       Video asettuu aina vasempaan laitaan ja kuvat sen viereen
-       ruudukoksi, riippumatta missä järjestyksessä ne on listattu.
+       Video asettuu aina vasempaan laitaan koko korkeudelleen, ja
+       kuvat + tekstit (kuvaus, lineup, credit) asettuvat sen oikealle
+       puolelle omaksi pystypalstaksi — teksti tulee aina kuvien alle,
+       ei koskaan videon alle.
+
+       HUOM: tekstit (event-text, field-label, lineup, credit-line)
+       on kääritty <div class="event-details">-elementtiin — se on
+       tärkeä, jotta koodi osaa siirtää ne kuvien alle oikeaan kohtaan.
+       Jos lisäät tapahtumalle uutta tekstiä, pidä se event-details-
+       elementin sisällä.
 
        Lisää kuva:  ...|2025-bridge-6.jpg
        Lisää video: ...|2025-bridge-7.mp4  (tai suora URL, esim.
                      GitHub Releasesta kopioitu linkki)
-
-       Videot voivat olla joko tiedostonimiä (jos lataat ne myös
-       tähän kansioon — huom. 100 Mt:n raja) tai täysiä https-
-       osoitteita (esim. GitHub Release -linkki), jos video on
-       ladattu erikseen ison koon takia.
      ======================================================== -->
 
   <!-- ========== 2026 ========== -->
@@ -403,19 +410,23 @@ At Kori Jazz we play street basketball and listen to jazz. Come listen to the mu
       <h3>Kori Jazz The Bridge</h3>
       <p class="event-meta">Aug 22, 2026 · Hermanni Basketball Court, Hämeentie 105, Helsinki</p>
       <div class="event-media"></div>
-      <p class="event-text"><!-- TODO: 2–4 lausetta vuoden 2026 tunnelmasta --></p>
-      <p class="field-label">Lineup</p>
-      <p class="lineup">Kadi Vija · Antti Ahoniemi Trio · Siina Suutarinen Super Sonic feat. Oona Mattsson · Mubba and The Afrotan</p>
-      <p class="credit-line">In partnership with: Yökoris (basketball) · Bamilama (food)</p>
+      <div class="event-details">
+        <p class="event-text"><!-- TODO: 2–4 lausetta vuoden 2026 tunnelmasta --></p>
+        <p class="field-label">Lineup</p>
+        <p class="lineup">Kadi Vija · Antti Ahoniemi Trio · Siina Suutarinen Super Sonic feat. Oona Mattsson · Mubba and The Afrotan</p>
+        <p class="credit-line">In partnership with: Yökoris (basketball) · Bamilama (food)</p>
+      </div>
     </div>
 
     <div class="event" data-media="2026-popup-aftermovie.mp4|2026-popup-1.jpg|2026-popup-2.jpg|2026-popup-3.jpg">
       <h3>Pop-up: Maailma kylässä Festival</h3>
       <p class="event-meta">May 16, 2026 · Narinkkatori, Helsinki</p>
       <div class="event-media"></div>
-      <p class="event-text"><!-- TODO: lyhyt kuvaus --></p>
-      <p class="field-label">Lineup</p>
-      <p class="lineup">Pauli Halonen Trio · Yökoris</p>
+      <div class="event-details">
+        <p class="event-text"><!-- TODO: lyhyt kuvaus --></p>
+        <p class="field-label">Lineup</p>
+        <p class="lineup">Pauli Halonen Trio · Yökoris</p>
+      </div>
     </div>
   </section>
 
@@ -427,40 +438,50 @@ At Kori Jazz we play street basketball and listen to jazz. Come listen to the mu
       <h3>Kori Jazz The Bridge</h3>
       <p class="event-meta">Helsinki · Hämeentie bridge underpass, Vallila/Hermanni</p>
       <div class="event-media"></div>
-      <p class="event-text"><!-- TODO: kuvaus --></p>
-      <p class="field-label">Lineup</p>
-      <p class="lineup"><!-- TODO: bändilista --></p>
+      <div class="event-details">
+        <p class="event-text"><!-- TODO: kuvaus --></p>
+        <p class="field-label">Lineup</p>
+        <p class="lineup"><!-- TODO: bändilista --></p>
+      </div>
     </div>
 
     <div class="event" data-media="2025-copenhagen-aftermovie.mp4|2025-copenhagen-1.jpg|2025-copenhagen-2.jpg|2025-copenhagen-3.jpg|2025-copenhagen-4.jpg">
       <h3>Kori Jazz Copenhagen</h3>
       <p class="event-meta">Copenhagen · part of Copenhagen Jazz Week</p>
       <div class="event-media"></div>
-      <p class="event-text"><!-- TODO: kuvaus, esim. yhteys Nordic Culture Exchange -ohjelmaan --></p>
-      <p class="field-label">Lineup</p>
-      <p class="lineup"><!-- TODO: bändilista --></p>
+      <div class="event-details">
+        <p class="event-text"><!-- TODO: kuvaus, esim. yhteys Nordic Culture Exchange -ohjelmaan --></p>
+        <p class="field-label">Lineup</p>
+        <p class="lineup"><!-- TODO: bändilista --></p>
+      </div>
     </div>
 
     <div class="event" data-media="2025-eira-aftermovie.mp4|2025-eira-1.jpg|2025-eira-2.jpg|2025-eira-3.jpg">
       <h3>Pop-up: Eira</h3>
       <p class="event-meta">Helsinki</p>
       <div class="event-media"></div>
-      <p class="event-text"><!-- TODO: kuvaus --></p>
+      <div class="event-details">
+        <p class="event-text"><!-- TODO: kuvaus --></p>
+      </div>
     </div>
 
     <div class="event" data-media="2025-typo-aftermovie.mp4|2025-typo-1.jpg|2025-typo-2.jpg|2025-typo-3.jpg">
       <h3>Pop-up: Bar Typo, Ruoholahti</h3>
       <p class="event-meta">Helsinki Day · moved indoors due to rain</p>
       <div class="event-media"></div>
-      <p class="event-text"><!-- TODO: kuvaus --></p>
+      <div class="event-details">
+        <p class="event-text"><!-- TODO: kuvaus --></p>
+      </div>
     </div>
 
     <div class="event" data-media="2025-helride-aftermovie.mp4|2025-helride-1.jpg|2025-helride-2.jpg|2025-helride-3.jpg">
       <h3>Pop-up: Ruoholahti, with Helride</h3>
       <p class="event-meta">Ruoholahti, Helsinki</p>
       <div class="event-media"></div>
-      <p class="event-text"><!-- TODO: kuvaus --></p>
-      <p class="credit-line">In partnership with: Helride</p>
+      <div class="event-details">
+        <p class="event-text"><!-- TODO: kuvaus --></p>
+        <p class="credit-line">In partnership with: Helride</p>
+      </div>
     </div>
   </section>
 
@@ -472,18 +493,22 @@ At Kori Jazz we play street basketball and listen to jazz. Come listen to the mu
       <h3>Kori Jazz The Bridge</h3>
       <p class="event-meta">Vallila/Hermanni, Helsinki</p>
       <div class="event-media"></div>
-      <p class="event-text"><!-- TODO: kuvaus --></p>
-      <p class="field-label">Lineup</p>
-      <p class="lineup"><!-- TODO: bändilista --></p>
+      <div class="event-details">
+        <p class="event-text"><!-- TODO: kuvaus --></p>
+        <p class="field-label">Lineup</p>
+        <p class="lineup"><!-- TODO: bändilista --></p>
+      </div>
     </div>
 
     <div class="event" data-media="2024-sunnyside-aftermovie.mp4|2024-sunnyside-1.jpg|2024-sunnyside-2.jpg|2024-sunnyside-3.jpg|2024-sunnyside-4.jpg">
       <h3>The Sunny Side</h3>
       <p class="event-meta">Hietaniemi beach, Helsinki</p>
       <div class="event-media"></div>
-      <p class="event-text"><!-- TODO: kuvaus --></p>
-      <p class="field-label">Lineup</p>
-      <p class="lineup"><!-- TODO: bändilista --></p>
+      <div class="event-details">
+        <p class="event-text"><!-- TODO: kuvaus --></p>
+        <p class="field-label">Lineup</p>
+        <p class="lineup"><!-- TODO: bändilista --></p>
+      </div>
     </div>
 
     <div class="event" data-media="2024-oodi-1.jpg|2024-oodi-2.jpg|2024-oodi-3.jpg|2024-oodi-4.jpg">
@@ -513,10 +538,12 @@ At Kori Jazz we play street basketball and listen to jazz. Come listen to the mu
       <h3>Under the Hämeentie Bridge</h3>
       <p class="event-meta">Vallila/Hermanni, Helsinki</p>
       <div class="event-media"></div>
-      <p class="event-text">
-        <!-- TODO: tämä on hyvä paikka alkuperätarinalle — silta löytyi sattumalta,
-             nimeä "The Bridge" ei vielä ollut käytössä. -->
-      </p>
+      <div class="event-details">
+        <p class="event-text">
+          <!-- TODO: tämä on hyvä paikka alkuperätarinalle — silta löytyi sattumalta,
+               nimeä "The Bridge" ei vielä ollut käytössä. -->
+        </p>
+      </div>
     </div>
   </section>
 
@@ -528,7 +555,9 @@ At Kori Jazz we play street basketball and listen to jazz. Come listen to the mu
       <h3>The First Kori Jazz</h3>
       <p class="event-meta">Hietaniemi beach, Helsinki</p>
       <div class="event-media"></div>
-      <p class="event-text"><!-- TODO: perustamistarina --></p>
+      <div class="event-details">
+        <p class="event-text"><!-- TODO: perustamistarina --></p>
+      </div>
     </div>
   </section>
 </main>
@@ -566,15 +595,19 @@ At Kori Jazz we play street basketball and listen to jazz. Come listen to the mu
   });
 
   // ---------- Build each event's media from its data-media list ----------
-  // Each filename is checked by its extension: .mp4/.mov/.webm becomes an
-  // autoplay-on-scroll video (always placed on the left), anything else
-  // becomes a clickable photo placed in a wrapping grid to the video's right.
+  // Video always goes on the left (full height). Photos go in a wrapping
+  // grid to its right, with the event's text moved below the photos
+  // (inside the same right-hand column) rather than below the video.
   const VIDEO_EXT = /\.(mp4|mov|webm|m4v)(\?.*)?$/i;
 
   document.querySelectorAll('.event[data-media]').forEach((eventEl) => {
-    const container = eventEl.querySelector('.event-media');
+    const mediaRow = eventEl.querySelector('.event-media');
+    const details = eventEl.querySelector('.event-details'); // may be null
+
     const photoGrid = document.createElement('div');
     photoGrid.className = 'photo-grid';
+
+    let videoWrap = null;
 
     const files = eventEl.getAttribute('data-media')
       .split('|')
@@ -609,9 +642,7 @@ At Kori Jazz we play street basketball and listen to jazz. Come listen to the mu
 
         wrap.appendChild(video);
         wrap.appendChild(btn);
-        // Video always goes to the front, so it ends up on the left
-        // regardless of where it appears in the data-media list.
-        container.insertBefore(wrap, container.firstChild);
+        videoWrap = wrap; // keep reference — only expect one video per event
       } else {
         const img = document.createElement('img');
         img.src = file;
@@ -624,9 +655,15 @@ At Kori Jazz we play street basketball and listen to jazz. Come listen to the mu
       }
     });
 
-    if (photoGrid.children.length) {
-      container.appendChild(photoGrid);
-    }
+    // Right-hand column: photos on top, text (moved from .event-details)
+    // below them.
+    const contentCol = document.createElement('div');
+    contentCol.className = 'content-col';
+    if (photoGrid.children.length) contentCol.appendChild(photoGrid);
+    if (details) contentCol.appendChild(details); // moves the node, doesn't clone it
+
+    if (videoWrap) mediaRow.appendChild(videoWrap);
+    mediaRow.appendChild(contentCol);
   });
 
   // Play/pause each aftermovie as it scrolls into view.
