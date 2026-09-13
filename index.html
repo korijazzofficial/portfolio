@@ -190,6 +190,7 @@
   .event-media {
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-start;
     gap: 10px;
     margin-bottom: 18px;
   }
@@ -224,11 +225,13 @@
     justify-content: center;
   }
 
+  /* Photos keep their own natural aspect ratio instead of being cropped to
+     a square — a fixed height, width follows automatically. */
   .event-media img {
     flex: 0 0 auto;
-    width: 110px;
-    aspect-ratio: 1;
-    object-fit: cover;
+    height: 170px;
+    width: auto;
+    max-width: 260px;
     border-radius: 10px;
     display: block;
     cursor: zoom-in;
@@ -308,7 +311,7 @@
     .nav-toggle { display: block; }
 
     .event-media .video-wrap { width: 240px; }
-    .event-media img { width: 88px; }
+    .event-media img { height: 130px; max-width: 200px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
