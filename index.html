@@ -369,50 +369,50 @@
       </p>
       <div class="promo-video">
         <!-- TODO: korvaa 2026 mainosvideolla (pystysuunta, mykistetty, loop) -->
-        <video autoplay muted loop playsinline preload="metadata" poster="2026-bridge-poster.jpg">
+        <video autoplay muted loop playsinline preload="metadata">
           <source src="2026-promo.mp4" type="video/mp4">
         </video>
       </div>
     </div>
   </section>
 
+  <!-- ========================================================
+       MEDIAN LISÄÄMINEN (kuvat + videot):
+
+       Jokaisella tapahtumalla (.event) on data-media-määre, joka
+       listaa kaikki sen kuvat ja videot pystyviivalla ( | )
+       erotettuna, missä järjestyksessä tahansa. Koodi tunnistaa
+       itse tiedostopäätteestä onko kyseessä kuva vai video —
+       sinun ei tarvitse merkitä mikä on "juliste" tai "aftermovie".
+
+       Lisää kuva:  ...|2025-bridge-6.jpg
+       Lisää video: ...|2025-bridge-7.mp4  (tai suora URL, esim.
+                     GitHub Releasesta kopioitu linkki)
+
+       Videot voivat olla joko tiedostonimiä (jos lataat ne myös
+       tähän kansioon — huom. 100 Mt:n raja) tai täysiä https-
+       osoitteita (esim. GitHub Release -linkki), jos video on
+       ladattu erikseen ison koon takia.
+     ======================================================== -->
+
   <!-- ========== 2026 ========== -->
   <section id="y2026">
     <h2>2026</h2>
 
-    <div class="event">
+    <div class="event" data-media="2026-bridge-1.jpg|2026-bridge-2.jpg|2026-bridge-3.jpg|2026-bridge-4.jpg|2026-bridge-5.jpg">
       <h3>Kori Jazz The Bridge</h3>
       <p class="event-meta">Aug 22, 2026 · Hermanni Basketball Court, Hämeentie 105, Helsinki</p>
-      <div class="event-media">
-        <!-- TODO: lisää aftermovie tähän kun se on valmis — video-wrap+video-koodin
-             saat kopioitua esim. yllä olevasta Maailma kylässä -tapahtumasta. -->
-        <!-- TODO: lisää niin monta kuvaa Atten materiaalista kuin haluat, samalla kaavalla -->
-        <img src="2026-bridge-1.jpg" alt="">
-        <img src="2026-bridge-2.jpg" alt="">
-        <img src="2026-bridge-3.jpg" alt="">
-        <img src="2026-bridge-4.jpg" alt="">
-        <img src="2026-bridge-5.jpg" alt="">
-      </div>
+      <div class="event-media"></div>
       <p class="event-text"><!-- TODO: 2–4 lausetta vuoden 2026 tunnelmasta --></p>
       <p class="field-label">Lineup</p>
       <p class="lineup">Kadi Vija · Antti Ahoniemi Trio · Siina Suutarinen Super Sonic feat. Oona Mattsson · Mubba and The Afrotan</p>
       <p class="credit-line">In partnership with: Yökoris (basketball) · Bamilama (food)</p>
     </div>
 
-    <div class="event">
+    <div class="event" data-media="2026-popup-aftermovie.mp4|2026-popup-1.jpg|2026-popup-2.jpg|2026-popup-3.jpg">
       <h3>Pop-up: Maailma kylässä Festival</h3>
       <p class="event-meta">May 16, 2026 · Narinkkatori, Helsinki</p>
-      <div class="event-media">
-        <div class="video-wrap">
-          <video class="event-video" muted loop playsinline preload="metadata" poster="2026-popup-poster.jpg">
-            <source src="2026-popup-aftermovie.mp4" type="video/mp4">
-          </video>
-          <button class="sound-toggle" aria-label="Toggle sound">🔇</button>
-        </div>
-        <img src="2026-popup-1.jpg" alt="">
-        <img src="2026-popup-2.jpg" alt="">
-        <img src="2026-popup-3.jpg" alt="">
-      </div>
+      <div class="event-media"></div>
       <p class="event-text"><!-- TODO: lyhyt kuvaus --></p>
       <p class="field-label">Lineup</p>
       <p class="lineup">Pauli Halonen Trio · Yökoris</p>
@@ -423,94 +423,42 @@
   <section id="y2025">
     <h2>2025</h2>
 
-    <div class="event">
+    <div class="event" data-media="https://github.com/korijazzofficial/portfolio/releases/download/v1/2025-bridge-aftermovie.mp4|2025-bridge-1.jpg|2025-bridge-2.jpg|2025-bridge-3.jpg|2025-bridge-4.jpg">
       <h3>Kori Jazz The Bridge</h3>
       <p class="event-meta">Helsinki · Hämeentie bridge underpass, Vallila/Hermanni</p>
-      <div class="event-media">
-        <div class="video-wrap">
-          <video class="event-video" muted loop playsinline preload="metadata" poster="2025-bridge-poster.jpg">
-            <source src="https://github.com/korijazzofficial/portfolio/releases/download/v1/2025-bridge-aftermovie.mp4" type="video/mp4">
-          </video>
-          <button class="sound-toggle" aria-label="Toggle sound">🔇</button>
-        </div>
-        <img src="2025-bridge-1.jpg" alt="">
-        <img src="2025-bridge-2.jpg" alt="">
-        <img src="2025-bridge-3.jpg" alt="">
-        <img src="2025-bridge-4.jpg" alt="">
-      </div>
+      <div class="event-media"></div>
       <p class="event-text"><!-- TODO: kuvaus --></p>
       <p class="field-label">Lineup</p>
       <p class="lineup"><!-- TODO: bändilista --></p>
     </div>
 
-    <div class="event">
+    <div class="event" data-media="2025-copenhagen-aftermovie.mp4|2025-copenhagen-1.jpg|2025-copenhagen-2.jpg|2025-copenhagen-3.jpg|2025-copenhagen-4.jpg">
       <h3>Kori Jazz Copenhagen</h3>
       <p class="event-meta">Copenhagen · part of Copenhagen Jazz Week</p>
-      <div class="event-media">
-        <div class="video-wrap">
-          <video class="event-video" muted loop playsinline preload="metadata" poster="2025-copenhagen-poster.jpg">
-            <source src="2025-copenhagen-aftermovie.mp4" type="video/mp4">
-          </video>
-          <button class="sound-toggle" aria-label="Toggle sound">🔇</button>
-        </div>
-        <img src="2025-copenhagen-1.jpg" alt="">
-        <img src="2025-copenhagen-2.jpg" alt="">
-        <img src="2025-copenhagen-3.jpg" alt="">
-        <img src="2025-copenhagen-4.jpg" alt="">
-      </div>
+      <div class="event-media"></div>
       <p class="event-text"><!-- TODO: kuvaus, esim. yhteys Nordic Culture Exchange -ohjelmaan --></p>
       <p class="field-label">Lineup</p>
       <p class="lineup"><!-- TODO: bändilista --></p>
     </div>
 
-    <div class="event">
+    <div class="event" data-media="2025-eira-aftermovie.mp4|2025-eira-1.jpg|2025-eira-2.jpg|2025-eira-3.jpg">
       <h3>Pop-up: Eira</h3>
       <p class="event-meta">Helsinki</p>
-      <div class="event-media">
-        <div class="video-wrap">
-          <video class="event-video" muted loop playsinline preload="metadata" poster="2025-eira-poster.jpg">
-            <source src="2025-eira-aftermovie.mp4" type="video/mp4">
-          </video>
-          <button class="sound-toggle" aria-label="Toggle sound">🔇</button>
-        </div>
-        <img src="2025-eira-1.jpg" alt="">
-        <img src="2025-eira-2.jpg" alt="">
-        <img src="2025-eira-3.jpg" alt="">
-      </div>
+      <div class="event-media"></div>
       <p class="event-text"><!-- TODO: kuvaus --></p>
     </div>
 
-    <div class="event">
+    <div class="event" data-media="2025-typo-aftermovie.mp4|2025-typo-1.jpg|2025-typo-2.jpg|2025-typo-3.jpg">
       <h3>Pop-up: Bar Typo, Ruoholahti</h3>
       <p class="event-meta">Helsinki Day · moved indoors due to rain</p>
-      <div class="event-media">
-        <div class="video-wrap">
-          <video class="event-video" muted loop playsinline preload="metadata" poster="2025-typo-poster.jpg">
-            <source src="2025-typo-aftermovie.mp4" type="video/mp4">
-          </video>
-          <button class="sound-toggle" aria-label="Toggle sound">🔇</button>
-        </div>
-        <img src="2025-typo-1.jpg" alt="">
-        <img src="2025-typo-2.jpg" alt="">
-        <img src="2025-typo-3.jpg" alt="">
-      </div>
+      <div class="event-media"></div>
       <p class="event-text"><!-- TODO: kuvaus --></p>
     </div>
 
-    <div class="event">
+    <div class="event" data-media="2025-helride-aftermovie.mp4|2025-helride-1.jpg|2025-helride-2.jpg|2025-helride-3.jpg">
       <h3>Pop-up: Ruoholahti, with Helride</h3>
       <p class="event-meta">Ruoholahti, Helsinki</p>
-      <div class="event-media">
-        <div class="video-wrap">
-          <video class="event-video" muted loop playsinline preload="metadata" poster="2025-helride-poster.jpg">
-            <source src="2025-helride-aftermovie.mp4" type="video/mp4">
-          </video>
-          <button class="sound-toggle" aria-label="Toggle sound">🔇</button>
-        </div>
-        <img src="2025-helride-1.jpg" alt="">
-        <img src="2025-helride-2.jpg" alt="">
-        <img src="2025-helride-3.jpg" alt="">
-      </div>
+      <div class="event-media"></div>
       <p class="event-text"><!-- TODO: kuvaus --></p>
       <p class="credit-line">In partnership with: Helride</p>
     </div>
@@ -520,76 +468,40 @@
   <section id="y2024">
     <h2>2024</h2>
 
-    <div class="event">
+    <div class="event" data-media="2024-bridge-aftermovie.mp4|2024-bridge-1.jpg|2024-bridge-2.jpg|2024-bridge-3.jpg|2024-bridge-4.jpg">
       <h3>Kori Jazz The Bridge</h3>
       <p class="event-meta">Vallila/Hermanni, Helsinki</p>
-      <div class="event-media">
-        <div class="video-wrap">
-          <video class="event-video" muted loop playsinline preload="metadata" poster="2024-bridge-poster.jpg">
-            <source src="2024-bridge-aftermovie.mp4" type="video/mp4">
-          </video>
-          <button class="sound-toggle" aria-label="Toggle sound">🔇</button>
-        </div>
-        <img src="2024-bridge-1.jpg" alt="">
-        <img src="2024-bridge-2.jpg" alt="">
-        <img src="2024-bridge-3.jpg" alt="">
-        <img src="2024-bridge-4.jpg" alt="">
-      </div>
+      <div class="event-media"></div>
       <p class="event-text"><!-- TODO: kuvaus --></p>
       <p class="field-label">Lineup</p>
       <p class="lineup"><!-- TODO: bändilista --></p>
     </div>
 
-    <div class="event">
+    <div class="event" data-media="2024-sunnyside-aftermovie.mp4|2024-sunnyside-1.jpg|2024-sunnyside-2.jpg|2024-sunnyside-3.jpg|2024-sunnyside-4.jpg">
       <h3>The Sunny Side</h3>
       <p class="event-meta">Hietaniemi beach, Helsinki</p>
-      <div class="event-media">
-        <div class="video-wrap">
-          <video class="event-video" muted loop playsinline preload="metadata" poster="2024-sunnyside-poster.jpg">
-            <source src="2024-sunnyside-aftermovie.mp4" type="video/mp4">
-          </video>
-          <button class="sound-toggle" aria-label="Toggle sound">🔇</button>
-        </div>
-        <img src="2024-sunnyside-1.jpg" alt="">
-        <img src="2024-sunnyside-2.jpg" alt="">
-        <img src="2024-sunnyside-3.jpg" alt="">
-        <img src="2024-sunnyside-4.jpg" alt="">
-      </div>
+      <div class="event-media"></div>
       <p class="event-text"><!-- TODO: kuvaus --></p>
       <p class="field-label">Lineup</p>
       <p class="lineup"><!-- TODO: bändilista --></p>
     </div>
 
-    <div class="event">
+    <div class="event" data-media="2024-oodi-1.jpg|2024-oodi-2.jpg|2024-oodi-3.jpg|2024-oodi-4.jpg">
       <h3>Pop-up: Helsinki Day, outside Oodi</h3>
       <p class="event-meta">Helsinki</p>
-      <div class="event-media">
-        <img src="2024-oodi-1.jpg" alt="">
-        <img src="2024-oodi-2.jpg" alt="">
-        <img src="2024-oodi-3.jpg" alt="">
-        <img src="2024-oodi-4.jpg" alt="">
-      </div>
+      <div class="event-media"></div>
     </div>
 
-    <div class="event">
+    <div class="event" data-media="2024-kansalaistori-1.jpg|2024-kansalaistori-2.jpg|2024-kansalaistori-3.jpg|2024-kansalaistori-4.jpg">
       <h3>Pop-up: Finnish 3×3 Basketball Championships</h3>
       <p class="event-meta">Kansalaistori, Helsinki</p>
-      <div class="event-media">
-        <img src="2024-kansalaistori-1.jpg" alt="">
-        <img src="2024-kansalaistori-2.jpg" alt="">
-        <img src="2024-kansalaistori-3.jpg" alt="">
-        <img src="2024-kansalaistori-4.jpg" alt="">
-      </div>
+      <div class="event-media"></div>
     </div>
 
-    <div class="event">
+    <div class="event" data-media="2024-jarvenpaa-1.jpg|2024-jarvenpaa-2.jpg|2024-jarvenpaa-3.jpg">
       <h3>Pop-up: Central Court Opening</h3>
       <p class="event-meta">Järvenpää</p>
-      <div class="event-media">
-        <img src="2024-jarvenpaa-1.jpg" alt="">
-        <img src="2024-jarvenpaa-2.jpg" alt="">
-        <img src="2024-jarvenpaa-3.jpg" alt="">
-      </div>
+      <div class="event-media"></div>
     </div>
   </section>
 
@@ -597,15 +509,10 @@
   <section id="y2023">
     <h2>2023</h2>
 
-    <div class="event">
+    <div class="event" data-media="2023-1.jpg|2023-2.jpg|2023-3.jpg|2023-4.jpg">
       <h3>Under the Hämeentie Bridge</h3>
       <p class="event-meta">Vallila/Hermanni, Helsinki</p>
-      <div class="event-media">
-        <img src="2023-1.jpg" alt="">
-        <img src="2023-2.jpg" alt="">
-        <img src="2023-3.jpg" alt="">
-        <img src="2023-4.jpg" alt="">
-      </div>
+      <div class="event-media"></div>
       <p class="event-text">
         <!-- TODO: tämä on hyvä paikka alkuperätarinalle — silta löytyi sattumalta,
              nimeä "The Bridge" ei vielä ollut käytössä. -->
@@ -617,14 +524,10 @@
   <section id="y2022">
     <h2>2022</h2>
 
-    <div class="event">
+    <div class="event" data-media="2022-1.jpg|2022-2.jpg|2022-3.jpg">
       <h3>The First Kori Jazz</h3>
       <p class="event-meta">Hietaniemi beach, Helsinki</p>
-      <div class="event-media">
-        <img src="2022-1.jpg" alt="">
-        <img src="2022-2.jpg" alt="">
-        <img src="2022-3.jpg" alt="">
-      </div>
+      <div class="event-media"></div>
       <p class="event-text"><!-- TODO: perustamistarina --></p>
     </div>
   </section>
@@ -654,8 +557,61 @@
     });
   });
 
+  // ---------- Build each event's media from its data-media list ----------
+  // Each filename is checked by its extension: .mp4/.mov/.webm becomes an
+  // autoplay-on-scroll video, anything else becomes a clickable photo.
+  const VIDEO_EXT = /\.(mp4|mov|webm|m4v)(\?.*)?$/i;
+
+  document.querySelectorAll('.event[data-media]').forEach((eventEl) => {
+    const container = eventEl.querySelector('.event-media');
+    const files = eventEl.getAttribute('data-media')
+      .split('|')
+      .map((f) => f.trim())
+      .filter(Boolean);
+
+    files.forEach((file) => {
+      if (VIDEO_EXT.test(file)) {
+        const wrap = document.createElement('div');
+        wrap.className = 'video-wrap';
+
+        const video = document.createElement('video');
+        video.className = 'event-video';
+        video.muted = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.preload = 'metadata';
+
+        const source = document.createElement('source');
+        source.src = file;
+        source.type = 'video/mp4';
+        video.appendChild(source);
+
+        const btn = document.createElement('button');
+        btn.className = 'sound-toggle';
+        btn.setAttribute('aria-label', 'Toggle sound');
+        btn.textContent = '🔇';
+        btn.addEventListener('click', () => {
+          video.muted = !video.muted;
+          btn.textContent = video.muted ? '🔇' : '🔊';
+        });
+
+        wrap.appendChild(video);
+        wrap.appendChild(btn);
+        container.appendChild(wrap);
+      } else {
+        const img = document.createElement('img');
+        img.src = file;
+        img.alt = '';
+        img.addEventListener('click', () => {
+          lightboxImg.src = img.getAttribute('src');
+          lightbox.classList.add('open');
+        });
+        container.appendChild(img);
+      }
+    });
+  });
+
   // Play/pause each aftermovie as it scrolls into view.
-  const videos = document.querySelectorAll('.event-video');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -665,26 +621,11 @@
       }
     });
   }, { threshold: 0.5 });
-  videos.forEach((v) => observer.observe(v));
-
-  // Sound toggle buttons
-  document.querySelectorAll('.sound-toggle').forEach((btn) => {
-    const video = btn.parentElement.querySelector('video');
-    btn.addEventListener('click', () => {
-      video.muted = !video.muted;
-      btn.textContent = video.muted ? '🔇' : '🔊';
-    });
-  });
+  document.querySelectorAll('.event-video').forEach((v) => observer.observe(v));
 
   // Lightbox: click any event photo to enlarge it
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
-  document.querySelectorAll('.event-media img').forEach((img) => {
-    img.addEventListener('click', () => {
-      lightboxImg.src = img.getAttribute('src');
-      lightbox.classList.add('open');
-    });
-  });
   lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
 </script>
 
