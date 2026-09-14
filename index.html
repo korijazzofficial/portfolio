@@ -116,9 +116,15 @@
 
   .concept-row .info-text { flex: 1; text-align: left; }
 
+  .promo-video-col {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
   .promo-video {
     position: relative;
-    flex: 0 0 auto;
     width: 380px;
     aspect-ratio: 9 / 16;
     border-radius: 14px;
@@ -129,10 +135,17 @@
 
   .promo-video video { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+  .video-credit {
+    font-size: 13px;
+    opacity: 0.75;
+    text-align: center;
+  }
+
   @media (max-width: 640px) {
     .concept-row { flex-direction: column; align-items: center; }
     .concept-row .info-text { text-align: center; order: 2; }
-    .promo-video { width: 300px; order: 1; }
+    .promo-video-col { order: 1; }
+    .promo-video { width: 300px; }
   }
 
   /* ---------- Sections ---------- */
@@ -366,12 +379,15 @@
         Kori Jazz is a Helsinki-based event concept that brings live jazz and open street basketball together in public urban space.<br><br>
         Since its first event in 2022, it has grown from a single gathering into a recurring program: one or two larger events each year, complemented by a handful of pop-ups in various settings. In 2025 the concept expanded internationally with an event in Copenhagen.<br><br>
         Every event is free of charge and open to everyone, with no sign-up or team required.</p>
-      <div class="promo-video">
-        <!-- TODO: korvaa 2026 mainosvideolla (pystysuunta, mykistetty, loop) -->
-        <video id="promoVideo" autoplay muted loop playsinline preload="metadata">
-          <source src="https://github.com/korijazzofficial/portfolio/releases/download/v1/2026-promo.mp4" type="video/mp4">
-        </video>
-        <button class="sound-toggle" id="promoSoundToggle" aria-label="Toggle sound">🔇</button>
+      <div class="promo-video-col">
+        <div class="promo-video">
+          <!-- TODO: korvaa 2026 mainosvideolla (pystysuunta, mykistetty, loop) -->
+          <video id="promoVideo" autoplay muted loop playsinline preload="metadata">
+            <source src="https://github.com/korijazzofficial/portfolio/releases/download/v1/2026-promo.mp4" type="video/mp4">
+          </video>
+          <button class="sound-toggle" id="promoSoundToggle" aria-label="Toggle sound">🔇</button>
+        </div>
+        <p class="video-credit">Music: Humphrey Mubba – Kwetu Mashariki</p>
       </div>
     </div>
   </section>
@@ -388,6 +404,15 @@
        kuvat + tekstit (kuvaus, lineup, credit) asettuvat sen oikealle
        puolelle omaksi pystypalstaksi — teksti tulee aina kuvien alle,
        ei koskaan videon alle.
+
+       ÄÄNI: videoilla EI ole äänipainiketta oletuksena — ne pysyvät
+       aina mykistettyinä, koska emme yleensä ole varmoja musiikin
+       käyttöoikeuksista. Jos jollain videolla ON lupa käyttää ääntä,
+       lisää tiedostonimen/URL:n perään merkintä "::sound" (ilman
+       välilyöntejä), esim.:
+         ...|2025-bridge-aftermovie.mp4::sound|...
+       Tämä lisää videolle äänipainikkeen (🔇/🔊). Merkintä toimii
+       sekä paikallisille tiedostonimille että täysille URL:eille.
 
        HUOM: tekstit (event-text, field-label, lineup, credit-line)
        on kääritty <div class="event-details">-elementtiin — se on
@@ -432,7 +457,7 @@
   <section id="y2025">
     <h2>2025</h2>
 
-    <div class="event" data-media="https://github.com/korijazzofficial/portfolio/releases/download/v1/2025-bridge-aftermovie.mp4|2025-bridge-1.jpg|2025-bridge-2.jpg|2025-bridge-3.jpg|2025-bridge-4.jpg">
+    <div class="event" data-media="https://github.com/korijazzofficial/portfolio/releases/download/v1/2025-bridge-aftermovie.mp4::sound|2025-bridge-1.jpg|2025-bridge-2.jpg|2025-bridge-3.jpg|2025-bridge-4.jpg">
       <h3>Kori Jazz The Bridge 2025</h3>
       <p class="event-meta">Aug 16, 2025 · Hermanni Basketball Court, Helsinki</p>
       <div class="event-media"></div>
@@ -440,7 +465,7 @@
         <p class="event-text">Kori Jazz's last event of the summer returned to Hermanni Basketball Court under the Hämeentie bridge. Around 300 people came despite light rain. Beyond the regular lineup, a surprise saxophone duo, Vili Järvinen and Antti Vauhkonen, played between sets, and the night closed with an open jam session. The podcast "Kasper ja Mikko – Suomen suosituin podcast" also stopped by to record an episode.</p>
         <p class="field-label">Lineup</p>
         <p class="lineup">Arttu Huopainen South-East Corner · Viive · Myrtsi</p>
-        <p class="credit-line">Poster: Veera Kesänen, Photos: Atte Männikkö & Valtteri Moilanen</p>
+        <p class="credit-line">Poster: Veera Kesänen, Photos: Atte Männikkö & Valtteri Moilanen, Aftermovie music: Arttu Huopainen South-East Corner – Circling Around (live)</p>
       </div>
     </div>
 
@@ -619,7 +644,7 @@ Kori Jazz 2023 was originally planned for Hietsu, but rain pushed it under the H
     });
   });
 
-  // Promo video sound toggle
+  // Promo video sound toggle (concept video — sound is allowed here)
   const promoVideo = document.getElementById('promoVideo');
   const promoSoundToggle = document.getElementById('promoSoundToggle');
   promoSoundToggle.addEventListener('click', () => {
@@ -631,7 +656,12 @@ Kori Jazz 2023 was originally planned for Hietsu, but rain pushed it under the H
   // Video always goes on the left (full height). Photos go in a wrapping
   // grid to its right, with the event's text moved below the photos
   // (inside the same right-hand column) rather than below the video.
+  //
+  // Sound: videos are muted with NO toggle button by default (we usually
+  // don't have music rights). A file marked with a trailing "::sound"
+  // gets the sound toggle button instead.
   const VIDEO_EXT = /\.(mp4|mov|webm|m4v)(\?.*)?$/i;
+  const SOUND_MARKER = '::sound';
 
   document.querySelectorAll('.event[data-media]').forEach((eventEl) => {
     const mediaRow = eventEl.querySelector('.event-media');
@@ -647,7 +677,10 @@ Kori Jazz 2023 was originally planned for Hietsu, but rain pushed it under the H
       .map((f) => f.trim())
       .filter(Boolean);
 
-    files.forEach((file) => {
+    files.forEach((rawFile) => {
+      const hasSound = rawFile.endsWith(SOUND_MARKER);
+      const file = hasSound ? rawFile.slice(0, -SOUND_MARKER.length) : rawFile;
+
       if (VIDEO_EXT.test(file)) {
         const wrap = document.createElement('div');
         wrap.className = 'video-wrap';
@@ -664,17 +697,20 @@ Kori Jazz 2023 was originally planned for Hietsu, but rain pushed it under the H
         source.type = 'video/mp4';
         video.appendChild(source);
 
-        const btn = document.createElement('button');
-        btn.className = 'sound-toggle';
-        btn.setAttribute('aria-label', 'Toggle sound');
-        btn.textContent = '🔇';
-        btn.addEventListener('click', () => {
-          video.muted = !video.muted;
-          btn.textContent = video.muted ? '🔇' : '🔊';
-        });
-
         wrap.appendChild(video);
-        wrap.appendChild(btn);
+
+        if (hasSound) {
+          const btn = document.createElement('button');
+          btn.className = 'sound-toggle';
+          btn.setAttribute('aria-label', 'Toggle sound');
+          btn.textContent = '🔇';
+          btn.addEventListener('click', () => {
+            video.muted = !video.muted;
+            btn.textContent = video.muted ? '🔇' : '🔊';
+          });
+          wrap.appendChild(btn);
+        }
+
         videoWrap = wrap; // keep reference — only expect one video per event
       } else {
         const img = document.createElement('img');
